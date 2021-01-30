@@ -26,6 +26,7 @@ services:
       - ${VHOSTS_DIR-./config/vhosts}:/etc/apache2/sites-enabled
       - ${LOG_DIR-./logs/apache2}:/var/log/apache2
     environment:
+      PHP_ENV: development
       PMA_PORT: ${HOST_MACHINE_PMA_PORT}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
   database:
@@ -40,9 +41,6 @@ services:
       - ${MYSQL_LOG_DIR-./logs/mysql}:/var/log/mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_DATABASE: ${MYSQL_DATABASE}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
   redis:
     container_name: '${COMPOSE_PROJECT_NAME}-redis'
     image: redis:latest

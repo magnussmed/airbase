@@ -9,5 +9,6 @@ stop:
 	docker-compose -f docker-compose.yml stop
 
 deploy-base:
+	rm -rf www/$(app)
 	mkdir www/$(app)
 	git clone https://github.com/magnussmed/$(app) www/$(app)
