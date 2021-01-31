@@ -1,6 +1,5 @@
 # Docker Airbase Environment (LAMP)
-A dockerized LAMP environment for developing PHP applications
-
+A dockerized LAMP environment for developing PHP applications.
 
 ## Setup and usage
 ### Install everything that's necessary
@@ -24,6 +23,7 @@ Last you will need to deactivate your local dnsmasq:
 sudo brew services stop dnsmasq
 ```
 <br><br>
+
 ### Configure the .env file and Makefile
 In the .env file, you're able to control different variables such as choosing the desired PHP version. If you change some of the configuration variables (DOCUMENT_ROOT, VHOSTS_DIR etc.), then remember to change the folder structure as well.
 <b>Note: It is not needed to configure the .env file.</b>
@@ -32,6 +32,7 @@ The make target 'deploy-base' depends on the variable GIT_USER that should be ei
 Please note, the target also calls another target 'db-import-prod' from our WordPress Boilerplate Site setup: https://github.com/magnussmed/wp-site-boilerplate
 Feel free to delete that specific line.
 <br><br>
+
 ### Fire it up!
 It is time to fire up the Airbase.
 Call the following command within this repository's root:
