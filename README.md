@@ -11,7 +11,7 @@ brew cask install docker
 ```
 If you don't have Homebrew installed, get it by running:
 ```bash
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)
+ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 <br>
 This project also depends on Make. We're using make targets in order to spin up the containers and for deploying new repositories to the LAMP environment.
