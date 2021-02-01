@@ -1,5 +1,5 @@
 # Docker Airbase Environment (LAMP)
-A dockerized LAMP environment for developing PHP applications.
+A dockerized LAMP environment for developing PHP applications. Only tested on MacOS.
 
 ## Setup and usage
 ### Install everything that's necessary
@@ -35,8 +35,8 @@ The make target 'deploy-base' depends on the variable GIT_USER that should be ei
 <br><br>
 <b>Please note</b>, the target also calls another target 'db-import-prod' from our <a href="https://github.com/magnussmed/wp-site-boilerplate">WordPress Boilerplate Site setup</a>
 <br><br>
-Feel free to delete that specific line if you're not using the above WordPress repository setup. 
-<br><br>
+Feel free to delete that specific line if you're not using the above WordPress repository setup.
+<br>
 
 ### Fire it up!
 It is time to fire up the Airbase.
