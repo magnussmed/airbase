@@ -16,7 +16,6 @@ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/
 <br>
 This project also depends on Make. We'e using make targets in order to spin up the containers and for deploying new repositories to the LAMP environment.
 <br>
-Install Make by:
 
 ```bash
 brew install make
@@ -27,14 +26,13 @@ Last you will need to deactivate your local dnsmasq:
 ```bash
 sudo brew services stop dnsmasq
 ```
-<br>
 
 ### Configure the .env file and Makefile
 In the .env file, you're able to control different variables such as choosing the desired PHP version. If you change some of the configuration variables (DOCUMENT_ROOT, VHOSTS_DIR etc.), then remember to change the folder structure as well.
 <b><br>Note: It is not required to configure the .env file.</b>
 <br><br>
 The make target 'deploy-base' depends on the variable GIT_USER that should be either your own GitHub username or your organization's name.
-Please note, the target also calls another target 'db-import-prod' from our WordPress Boilerplate Site setup: https://github.com/magnussmed/wp-site-boilerplate
+Please note, the target also calls another target 'db-import-prod' from our <a href="https://github.com/magnussmed/wp-site-boilerplate">WordPress Boilerplate Site setup</a>
 <br>
 Feel free to delete that specific line.
 <br><br>
