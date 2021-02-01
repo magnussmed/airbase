@@ -18,7 +18,7 @@ This project also depends on Make. We're using make targets in order to spin up 
 <br>
 Install Make by:
 ```bash
-brew install make
+brew cask install docker
 ```
 <br>
 Last you will need to deactivate your local dnsmasq:
