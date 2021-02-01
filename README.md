@@ -14,18 +14,20 @@ If you don't have Homebrew installed, get it by running:
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
 <br>
-This project also depends on Make. We are using make targets in order to spin up the containers and for deploying new repositories to the LAMP environment.
+This project also depends on Make. We'e using make targets in order to spin up the containers and for deploying new repositories to the LAMP environment.
 <br>
 Install Make by:
+
 ```bash
 brew install make
 ```
 <br>
 Last you will need to deactivate your local dnsmasq:
+
 ```bash
 sudo brew services stop dnsmasq
 ```
-<br><br>
+<br>
 
 ### Configure the .env file and Makefile
 In the .env file, you're able to control different variables such as choosing the desired PHP version. If you change some of the configuration variables (DOCUMENT_ROOT, VHOSTS_DIR etc.), then remember to change the folder structure as well.
