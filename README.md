@@ -13,6 +13,10 @@ If you don't have Homebrew installed, get it by running:
 ```bash
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 ```
+<br>
+This project also depends on Make. We are using make targets in order to spin up the containers and for deploying new repositories to the LAMP environment.
+<br>
+Install Make by:
 ```bash
 brew install make
 ```
