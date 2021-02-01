@@ -20,6 +20,7 @@ Install Make by:
 ```bash
 brew install make
 ```
+<br>
 Last you will need to deactivate your local dnsmasq:
 ```bash
 sudo brew services stop dnsmasq
