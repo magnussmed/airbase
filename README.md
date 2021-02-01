@@ -32,9 +32,10 @@ In the .env file, you're able to control different variables such as choosing th
 <b><br>Note: It is not required to configure the .env file.</b>
 <br><br>
 The make target 'deploy-base' depends on the variable GIT_USER that should be either your own GitHub username or your organization's name.
-Please note, the target also calls another target 'db-import-prod' from our <a href="https://github.com/magnussmed/wp-site-boilerplate">WordPress Boilerplate Site setup</a>
-<br>
-Feel free to delete that specific line.
+<br><br>
+<b>Please note</b>, the target also calls another target 'db-import-prod' from our <a href="https://github.com/magnussmed/wp-site-boilerplate">WordPress Boilerplate Site setup</a>
+<br><br>
+Feel free to delete that specific line if you're not using the above WordPress repository setup. 
 <br><br>
 
 ### Fire it up!
