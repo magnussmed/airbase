@@ -15,7 +15,7 @@ deploy-base:
 	@echo "\033[0;32mCloning "$(app)" repository from GitHub ($(GIT_USER))...\033[0m"
 	git clone https://github.com/$(GIT_USER)/$(app) www/$(app)
 	@echo "\033[0;32mInstalling Wordpress and other composer dependencies...\033[0m"
-	cd www/$(app) && curl -s https://getcomposer.org/installer | php -- --install-dir=./ --version=1.1.1 && rm -rf composer.lock && php composer.phar install
+	cd www/$(app) && curl -s https://getcomposer.org/installer | php -- --install-dir=./ --version=1.9.0 && rm -rf composer.lock && php composer.phar install
 	@echo "\033[0;32mExecuting repository make command...\033[0m"
 	cd www/$(app) && make db-import-prod
 	@echo "\033[0;32mSuccessfully deployed "$(app)" to your local airbase environment.\033[0m"
