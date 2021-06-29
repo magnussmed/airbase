@@ -31,10 +31,10 @@ ifeq ($(name), )
 	@echo "\033[0;32mPlease provide a repository name by writing: make wp-app name=<value>\033[0m"
 else
 	@echo "\033[0;32mCreating a new WP repository: "$(name)"...\033[0m"
-	mkdir $(name) && cd $(name) && git clone https://github.com/$(GIT_USER)/wp-site-boilerplate.git && cd wp-site-boilerplate; rm -rf .git && mv .[^.]* .. && mv * ..
-	cd $(name) && rm -rf wp-site-boilerplate
-	cd $(name) && curl -i -H "Authorization: token "$(AUTH_TOKEN)"" -d '{ "name":"'$(name)'" }' https://api.github.com/user/repos
-	cd $(name) && git init; git remote add origin https://github.com/$(GIT_USER)/$(name).git
-	cd $(name) && git add . && git commit -a -m "Imported files from wp-site-boilerplate.git" && git push -u origin master
+	cd www && mkdir $(name) && cd $(name) && git clone https://github.com/$(GIT_USER)/wp-site-boilerplate.git && cd wp-site-boilerplate; rm -rf .git && mv .[^.]* .. && mv * ..
+	cd www/$(name) && rm -rf wp-site-boilerplate
+	cd www/$(name) && curl -i -H "Authorization: token "$(AUTH_TOKEN)"" -d '{ "name":"'$(name)'" }' https://api.github.com/user/repos
+	cd www/$(name) && git init; git remote add origin https://github.com/$(GIT_USER)/$(name).git
+	cd www/$(name) && git add . && git commit -a -m "Imported files from wp-site-boilerplate.git" && git push -u origin master
 	@echo "\033[0;32mSuccessfully created "$(name)"\033[0m"
 endif
