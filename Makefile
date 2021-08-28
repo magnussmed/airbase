@@ -4,6 +4,7 @@ ROOT_DIR       = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 GIT_USER       = magnussmed
 GIT_TOKEN_FILE = /Users/magnussmed/.gittoken
 AUTH_TOKEN     = `cat $(GIT_TOKEN_FILE)`
+APPS_COUNT     = `cd $(ROOT_DIR)/www && ls -l | grep -c ^d`
 
 start:
 	docker-compose -f docker-compose.yml up -d --build
@@ -44,10 +45,10 @@ else
 endif
 
 deploy-all-apps:
-	@echo "\033[0;32mStarting mass deployment...\033[0m"
-	@for f in $(shell ls ${ROOT_DIR}/www/); \
-	do echo "\033[0;32m$${f} password:\033[0m"; $(MAKE) -C ${ROOT_DIR}/www/$${f} get-pass; \
-	$(MAKE) -C ${ROOT_DIR}/www/$${f} app-deploy e=prod; \
-	echo "\033[0;32mMoving to next app in the line...\033[0m"; \
+	@echo "\033[0;32mStarting mass deployment of $(APPS_COUNT) apps...\033[0m"
+	@for f in $(shell ls $(ROOT_DIR)/www/); \
+	do echo "\033[0;32mMoving to next app in the line...\033[0m"; \
+	echo "\033[0;32m$${f} password:\033[0m"; $(MAKE) -C $(ROOT_DIR)/www/$${f} get-pass; \
+	$(MAKE) -C $(ROOT_DIR)/www/$${f} app-deploy e=prod; \
 	done
-	@echo "\033[0;32mMass deployment successfully finished!\033[0m"
+	@echo "\033[0;32mMass deployment successfully finished ($(APPS_COUNT)/$(APPS_COUNT))!\033[0m"
