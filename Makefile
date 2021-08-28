@@ -42,3 +42,12 @@ else
 	cd www/$(name) && git add . && git commit -a -m "Imported files from wp-site-boilerplate.git" && git push -u origin master
 	@echo "\033[0;32mSuccessfully created "$(name)"\033[0m"
 endif
+
+deploy-all-apps:
+	@echo "\033[0;32mStarting mass deployment...\033[0m"
+	@for f in $(shell ls ${ROOT_DIR}/www/); \
+	do echo "\033[0;32m$${f} password:\033[0m"; $(MAKE) -C ${ROOT_DIR}/www/$${f} get-pass; \
+	$(MAKE) -C ${ROOT_DIR}/www/$${f} app-deploy e=prod; \
+	echo "\033[0;32mMoving to next app in the line...\033[0m"; \
+	done
+	@echo "\033[0;32mMass deployment successfully finished!\033[0m"
