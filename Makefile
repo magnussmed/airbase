@@ -3,7 +3,7 @@ CUR_BRANCH     = $(shell git rev-parse --abbrev-ref HEAD)
 ROOT_DIR       = $(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 GIT_USER       = magnussmed
 GIT_TOKEN_FILE = /Users/magnussmed/.gittoken
-AUTH_TOKEN     = `cat $(GIT_TOKEN_FILE)`
+AUTH_TOKEN     = $(shell cat $(GIT_TOKEN_FILE))
 APPS_COUNT     = `cd $(ROOT_DIR)/www && ls -l | grep -c ^d`
 
 start:
@@ -43,6 +43,30 @@ else
 	cd www/$(name) && git add . && git commit -a -m "Imported files from wp-site-boilerplate.git" && git push -u origin master
 	@echo "\033[0;32mSuccessfully created "$(name)"\033[0m"
 endif
+
+mass-update:
+ifeq ($(message), )
+	@echo "\033[0;32mYou have to provide a commit message: message=<commit-message>!\033[0m"
+	exit 1
+endif
+ifeq ($(package), )
+	@echo "\033[0;32mYou have to provide a package: package=<name-of-package>!\033[0m"
+	exit 1
+endif
+ifeq ($(version), )
+	@echo "\033[0;32mYou have to provide a version: version=<version>!\033[0m"
+	exit 1
+endif
+	chmod +x $(shell pwd)/scripts/mass-update.sh
+	git-xargs --repos ./repos.txt --branch-name mass-update-2 --commit-message $(message) $(shell pwd)/scripts/mass-update.sh $(package) $(version)
+
+mass-gcp:
+	@echo "\033[0;32mStarting mass gcp of $(APPS_COUNT) apps...\033[0m"
+	@for f in $(shell ls $(ROOT_DIR)/www/); \
+	do echo "\033[0;32mMoving to next app in the line...\033[0m"; \
+	$(MAKE) -C $(ROOT_DIR)/www/$${f} update-repo; \
+	done
+	@echo "\033[0;32mMass gcp successfully finished ($(APPS_COUNT)/$(APPS_COUNT))!\033[0m"
 
 deploy-all-apps:
 	@echo "\033[0;32mStarting mass deployment of $(APPS_COUNT) apps...\033[0m"
