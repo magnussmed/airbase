@@ -68,7 +68,15 @@ mass-gcp:
 	done
 	@echo "\033[0;32mMass gcp successfully finished ($(APPS_COUNT)/$(APPS_COUNT))!\033[0m"
 
-deploy-all-apps:
+mass-pull:
+	@echo "\033[0;32mStarting mass updating local branches of $(APPS_COUNT) apps...\033[0m"
+	@for f in $(shell ls $(ROOT_DIR)/www/); \
+	do echo "\033[0;32mMoving to next app in the line...\033[0m"; \
+	$(MAKE) -C $(ROOT_DIR)/www/$${f} update-local-repo; \
+	done
+	@echo "\033[0;32mMass updating successfully finished ($(APPS_COUNT)/$(APPS_COUNT))!\033[0m"
+
+mass-deploy:
 	@echo "\033[0;32mStarting mass deployment of $(APPS_COUNT) apps...\033[0m"
 	@for f in $(shell ls $(ROOT_DIR)/www/); \
 	do echo "\033[0;32mMoving to next app in the line...\033[0m"; \
