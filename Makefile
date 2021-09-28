@@ -85,3 +85,12 @@ mass-deploy:
 	$(MAKE) -C $(ROOT_DIR)/www/$${f} app-deploy e=prod; \
 	done
 	@echo "\033[0;32mMass deployment successfully finished ($(APPS_COUNT)/$(APPS_COUNT))!\033[0m"
+
+mass-activate-plugins:
+	@echo "\033[0;32mStarting mass activation of plugins of $(APPS_COUNT) apps...\033[0m"
+	@for f in $(shell ls $(ROOT_DIR)/www/); \
+	do echo "\033[0;32mMoving to next app in the line...\033[0m"; \
+	echo "\033[0;32m$${f} password:\033[0m"; $(MAKE) -C $(ROOT_DIR)/www/$${f} get-pass; \
+	$(MAKE) -C $(ROOT_DIR)/www/$${f} wp-activate-plugins; \
+	done
+	@echo "\033[0;32mMass activation successfully finished ($(APPS_COUNT)/$(APPS_COUNT))!\033[0m"
