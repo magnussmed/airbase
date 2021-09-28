@@ -5,6 +5,7 @@ GIT_USER       = magnussmed
 GIT_TOKEN_FILE = /Users/magnussmed/.gittoken
 AUTH_TOKEN     = $(shell cat $(GIT_TOKEN_FILE))
 APPS_COUNT     = `cd $(ROOT_DIR)/www && ls -l | grep -c ^d`
+export GITHUB_OAUTH_TOKEN=$(AUTH_TOKEN)
 
 start:
 	docker-compose -f docker-compose.yml up -d --build
@@ -58,7 +59,7 @@ ifeq ($(version), )
 	exit 1
 endif
 	chmod +x $(shell pwd)/scripts/mass-update.sh
-	git-xargs --repos ./repos.txt --branch-name mass-update-2 --commit-message $(message) $(shell pwd)/scripts/mass-update.sh $(package) $(version)
+	git-xargs --loglevel DEBUG --repos ./repos.txt --branch-name mass-update --commit-message $(message) $(shell pwd)/scripts/mass-update.sh $(package) $(version)
 
 mass-gcp:
 	@echo "\033[0;32mStarting mass gcp of $(APPS_COUNT) apps...\033[0m"
